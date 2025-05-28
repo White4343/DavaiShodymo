@@ -27,14 +27,29 @@ public class Event(DateTime dateStart, DateTime dateEnd, string name, string? de
     public ICollection<EventEnrolment> EventEnrolments { get; set; } = new List<EventEnrolment>();
     public ICollection<Ticket> Tickets { get; set; } = new List<Ticket>();
 
-    public void Update(DateTime dateStart, DateTime dateEnd, string name, string? description, string? location)
+    public void Update(DateTime? dateStart, DateTime? dateEnd, string? name, string? description, string? location)
     {
-        DateStart = dateStart;
-        DateEnd = dateEnd;
-        Name = name;
-        Description = description;
-        Location = location;
-        IsActive = dateStart >= DateTime.UtcNow && dateEnd <= DateTime.UtcNow;
+        if (dateStart is not null)
+        {
+            DateStart = (DateTime)dateStart;
+        }
+        if (dateEnd is not null)
+        {
+            DateEnd = (DateTime)dateEnd;
+        }
+        if (!string.IsNullOrWhiteSpace(name))
+        {
+            Name = name;
+        }
+        if (!string.IsNullOrWhiteSpace(description))
+        {
+            Description = description;
+        }
+        if (!string.IsNullOrWhiteSpace(location))
+        {
+            Location = location;
+        }
+        IsActive = DateStart >= DateTime.UtcNow && DateEnd <= DateTime.UtcNow;
         DateStamp = DateTime.UtcNow;
     }
 }
