@@ -1,0 +1,6 @@
+@DavaiShodymo_HostAddress = http://localhost:5087
+
+GET {{DavaiShodymo_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
