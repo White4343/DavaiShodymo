@@ -12,6 +12,14 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using DavaiShodymo.EventImagePlacements;
+using DavaiShodymo.EventImages;
+using DavaiShodymo.EventReviews;
+using DavaiShodymo.Events;
+using DavaiShodymo.Events.CreateEvent;
+using DavaiShodymo.Events.GetEventById;
+using DavaiShodymo.Events.GetEventsLibrary;
+using DavaiShodymo.Events.UpdateEvent;
 using DavaiShodymo.Users.UpdateUser;
 using static DavaiShodymo.Users.Register.RegisterHandler;
 
@@ -77,11 +85,20 @@ namespace DavaiShodymo
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<IJwtProvider, JwtProvider>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IEventRepository, EventRepository>();
+            builder.Services.AddScoped<IEventImagePlacementRepository, EventImagePlacementRepository>();
+            builder.Services.AddScoped<IEventImageRepository, EventImageRepository>();
+            builder.Services.AddScoped<IEventReviewRepository, EventReviewRepository>();
+            builder.Services.AddScoped<IEventService, EventService>();
 
             builder.Services.AddScoped<RegisterHandler>();
             builder.Services.AddScoped<LoginHandler>();
             builder.Services.AddScoped<GetProfileHandler>();
             builder.Services.AddScoped<UpdateUserHandler>();
+            builder.Services.AddScoped<CreateEventHandler>();
+            builder.Services.AddScoped<UpdateEventHandler>();
+            builder.Services.AddScoped<GetEventByIdHandler>();
+            builder.Services.AddScoped<GetEventsLibraryHandler>();
 
             builder.Services.AddEndpoints();
 

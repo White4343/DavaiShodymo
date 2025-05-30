@@ -10,7 +10,7 @@ public class UpdateEventEndpoint : IEndpoint
         app.MapPost("events/update",
                 async (HttpContext httpContext, UpdateEventCommand request, UpdateEventHandler useCase, ClaimsPrincipal user) =>
                     await useCase.HandleAsync(request, user, httpContext.RequestAborted).ConfigureAwait(false))
-            .WithTags("Users")
+            .WithTags("Events")
             .RequireAuthorization()
             .WithOpenApi();
     }

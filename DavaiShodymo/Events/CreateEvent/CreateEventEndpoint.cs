@@ -10,7 +10,7 @@ public class CreateEventEndpoint : IEndpoint
         app.MapPost("events/create",
                 async (HttpContext httpContext, CreateEventCommand request, CreateEventHandler useCase, ClaimsPrincipal user) =>
                     await useCase.HandleAsync(request, user, httpContext.RequestAborted).ConfigureAwait(false))
-            .WithTags("Users")
+            .WithTags("Events")
             .RequireAuthorization()
             .WithOpenApi();
     }
