@@ -25,7 +25,15 @@ public class GetEventsLibraryHandler(IEventService eventService, IEventRepositor
         foreach (var eventEntity in events)
         {
             var eventResponse = await eventService.GetEventByIdAsync(eventEntity.Id, cancellationToken);
-            eventList.Add(eventResponse);
+
+            if (command.Rating is not null && eventResponse.TotalRating < command.Rating)
+            {
+
+            }
+            else
+            {
+                eventList.Add(eventResponse);
+            }
         }
 
         var response = new GetEventsLibraryResponse(command.PageNumber, command.PageSize, eventList.Count, eventList);

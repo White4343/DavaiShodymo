@@ -1,6 +1,4 @@
 ﻿using DavaiShodymo.EndpointHelper;
-using DavaiShodymo.Events.UpdateEvent;
-using System.Security.Claims;
 
 namespace DavaiShodymo.Events.GetEventsLibrary;
 
