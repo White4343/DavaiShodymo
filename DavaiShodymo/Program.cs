@@ -1,6 +1,18 @@
 
 using DavaiShodymo.Data;
 using DavaiShodymo.EndpointHelper;
+using DavaiShodymo.EventImagePlacements;
+using DavaiShodymo.EventImages;
+using DavaiShodymo.EventReviews;
+using DavaiShodymo.EventReviews.CreateReview;
+using DavaiShodymo.EventReviews.DeleteReview;
+using DavaiShodymo.EventReviews.GetReviewByEventId;
+using DavaiShodymo.EventReviews.UpdateReview;
+using DavaiShodymo.Events;
+using DavaiShodymo.Events.CreateEvent;
+using DavaiShodymo.Events.GetEventById;
+using DavaiShodymo.Events.GetEventsLibrary;
+using DavaiShodymo.Events.UpdateEvent;
 using DavaiShodymo.JwtProviderHelper;
 using DavaiShodymo.Middleware;
 using DavaiShodymo.PasswordHasherHelper;
@@ -8,19 +20,11 @@ using DavaiShodymo.Users;
 using DavaiShodymo.Users.GetProfile;
 using DavaiShodymo.Users.Login;
 using DavaiShodymo.Users.Register;
+using DavaiShodymo.Users.UpdateUser;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using DavaiShodymo.EventImagePlacements;
-using DavaiShodymo.EventImages;
-using DavaiShodymo.EventReviews;
-using DavaiShodymo.Events;
-using DavaiShodymo.Events.CreateEvent;
-using DavaiShodymo.Events.GetEventById;
-using DavaiShodymo.Events.GetEventsLibrary;
-using DavaiShodymo.Events.UpdateEvent;
-using DavaiShodymo.Users.UpdateUser;
 using static DavaiShodymo.Users.Register.RegisterHandler;
 
 namespace DavaiShodymo
@@ -99,6 +103,10 @@ namespace DavaiShodymo
             builder.Services.AddScoped<UpdateEventHandler>();
             builder.Services.AddScoped<GetEventByIdHandler>();
             builder.Services.AddScoped<GetEventsLibraryHandler>();
+            builder.Services.AddScoped<CreateReviewHandler>();
+            builder.Services.AddScoped<UpdateReviewHandler>();
+            builder.Services.AddScoped<DeleteReviewHandler>();
+            builder.Services.AddScoped<GetReviewByEventIdHandler>();
 
             builder.Services.AddEndpoints();
 

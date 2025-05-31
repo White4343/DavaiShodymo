@@ -10,7 +10,6 @@ public class GetEventByIdEndpoint : IEndpoint
                 async (HttpContext httpContext, GetEventByIdCommand request, GetEventByIdHandler useCase) =>
                     await useCase.HandleAsync(request, httpContext.RequestAborted).ConfigureAwait(false))
             .WithTags("Events")
-            .RequireAuthorization()
             .WithOpenApi();
     }
 }
