@@ -16,10 +16,17 @@ namespace DavaiShodymo.EventEnrolments
         public int UserId { get; set; } = userId;
         public User User { get; set; } = null!;
 
-        public void Update(bool isFavorite, int eventEnrolmentStatusId)
+        public void Update(bool? isFavorite, int? eventEnrolmentStatusId)
         {
-            IsFavorite = isFavorite;
-            EventEnrolmentStatusId = eventEnrolmentStatusId;
+            if (isFavorite.HasValue)
+            {
+                IsFavorite = isFavorite.Value;
+            }
+            if (eventEnrolmentStatusId.HasValue)
+            {
+                EventEnrolmentStatusId = eventEnrolmentStatusId.Value;
+            }
+
             DateStamp = DateTime.UtcNow;
         }
     }

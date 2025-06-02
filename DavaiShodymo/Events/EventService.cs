@@ -1,4 +1,5 @@
 ﻿using DavaiShodymo.Categories;
+using DavaiShodymo.EventEnrolmentStatuses;
 using DavaiShodymo.EventImagePlacements;
 using DavaiShodymo.EventImages;
 using DavaiShodymo.EventReviews;
@@ -10,7 +11,7 @@ namespace DavaiShodymo.Events;
 
 public class EventService(IEventRepository eventRepository, IUserRepository userRepository,
     IEventImagePlacementRepository eventImagePlacementRepository, IEventImageRepository eventImageRepository,
-    IEventReviewRepository eventReviewRepository) : IEventService
+    IEventReviewRepository eventReviewRepository, IEventEnrolmentRepository eventEnrolmentRepository) : IEventService
 {
     public async Task<GetEventByIdResponse> GetEventByIdAsync(int eventId, CancellationToken cancellationToken)
     {
@@ -57,9 +58,11 @@ public class EventService(IEventRepository eventRepository, IUserRepository user
 
         var totalRating = await eventReviewRepository.GetAverageRatingAsync(eventEntity.Id, cancellationToken);
 
+        var totalEnrolment = await eventEnrolmentRepository.GetTotalInterestedByEventIdAsync(eventEntity.Id, cancellationToken);
+
         var result = new GetEventByIdResponse(eventEntity.Id, eventEntity.DateStart, eventEntity.DateEnd,
             eventEntity.DateStamp, eventEntity.Name, eventEntity.Description, eventEntity.Location,
-            eventImageCommands, totalRating, userId, userFullName, tags, categories);
+            eventImageCommands, totalRating, userId, userFullName, tags, categories, totalEnrolment);
 
         return result;
     }

@@ -1,6 +1,10 @@
 
 using DavaiShodymo.Data;
 using DavaiShodymo.EndpointHelper;
+using DavaiShodymo.EventEnrolments.CreateEnrolment;
+using DavaiShodymo.EventEnrolments.GetEnrolmentByUser;
+using DavaiShodymo.EventEnrolments.UpdateEnrolment;
+using DavaiShodymo.EventEnrolmentStatuses;
 using DavaiShodymo.EventImagePlacements;
 using DavaiShodymo.EventImages;
 using DavaiShodymo.EventReviews;
@@ -94,6 +98,8 @@ namespace DavaiShodymo
             builder.Services.AddScoped<IEventImageRepository, EventImageRepository>();
             builder.Services.AddScoped<IEventReviewRepository, EventReviewRepository>();
             builder.Services.AddScoped<IEventService, EventService>();
+            builder.Services.AddScoped<IEventEnrolmentStatusRepository, EventEnrolmentStatusRepository>();
+            builder.Services.AddScoped<IEventEnrolmentRepository, EventEnrolmentRepository>();
 
             builder.Services.AddScoped<RegisterHandler>();
             builder.Services.AddScoped<LoginHandler>();
@@ -107,6 +113,9 @@ namespace DavaiShodymo
             builder.Services.AddScoped<UpdateReviewHandler>();
             builder.Services.AddScoped<DeleteReviewHandler>();
             builder.Services.AddScoped<GetReviewByEventIdHandler>();
+            builder.Services.AddScoped<CreateEnrolmentHandler>();
+            builder.Services.AddScoped<UpdateEnrolmentHandler>();
+            builder.Services.AddScoped<GetEnrolmentByUserHandler>();
 
             builder.Services.AddEndpoints();
 
